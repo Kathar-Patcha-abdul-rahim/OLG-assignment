@@ -10,6 +10,7 @@ public class BaseTest {
 
     private Playwright playwright;
     private Browser browser;
+    private boolean headless = Boolean.parseBoolean(System.getProperty("headless", "false"));
 
     protected BrowserContext context;
     protected Page page;
@@ -25,7 +26,7 @@ public class BaseTest {
 
         browser = playwright.chromium()
                 .launch(new BrowserType.LaunchOptions()
-                        .setHeadless(false)
+                        .setHeadless(headless)
                         .setArgs(List.of("--start-maximized")));
 
         context = browser.newContext(new Browser.NewContextOptions()
