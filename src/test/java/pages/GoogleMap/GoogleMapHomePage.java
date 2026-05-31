@@ -4,7 +4,7 @@ import com.microsoft.playwright.Locator;
 import com.microsoft.playwright.Page;
 import com.microsoft.playwright.options.AriaRole;
 
-public class googleMapHomePage {
+public class GoogleMapHomePage {
 
     private final Page page;
     private static final String TRIP_URL = "https://www.google.com/maps";
@@ -16,7 +16,7 @@ public class googleMapHomePage {
      * Assign the page with the current page session
      * @param page - page that need to be assigned
      */
-    public googleMapHomePage(Page page)
+    public GoogleMapHomePage(Page page)
     {
         this.page = page;
     }

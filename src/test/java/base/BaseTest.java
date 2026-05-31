@@ -51,4 +51,13 @@ public class BaseTest {
             playwright.close();
     }
 
+    /**
+     * return the current page of an instance
+     * @return - current page
+     */
+    public Page getPage()
+    {
+        return this.page;
+    }
+
 }

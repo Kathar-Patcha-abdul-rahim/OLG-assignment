@@ -9,8 +9,9 @@ public class ScreenshotUtil {
 
     public static void takeScreenshot(Page page, String testName)
     {
+        String fileName = testName + "_" + System.currentTimeMillis();
         page.screenshot(new Page.ScreenshotOptions()
-                .setPath(Paths.get("screenshots/" + testName + ".png"))
+                .setPath(Paths.get("screenshots/" + fileName + ".png"))
                 .setFullPage(true));
     }
 }

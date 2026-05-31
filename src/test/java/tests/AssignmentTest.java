@@ -3,13 +3,16 @@ package tests;
 import base.BaseTest;
 import com.microsoft.playwright.Locator;
 import org.testng.Assert;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 import pages.OLG.OLGHomePage;
-import pages.GoogleMap.googleMapHomePage;
+import pages.GoogleMap.GoogleMapHomePage;
+import listeners.TestListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
+@Listeners(TestListener.class)
 public class AssignmentTest extends BaseTest {
 
 
@@ -31,9 +34,7 @@ public class AssignmentTest extends BaseTest {
         String expectedPageTitle = "OLG | Ontario's Online LOTTERY, CASINO & SPORTS 2026";
 
         //asserting whether the actual page title matched the expected one
-        Assert.assertEquals(actualPageTitle, expectedPageTitle,
-                String.format("The Page title was not matched\n Actual: %s\nExpected: %s\n",
-                        actualPageTitle, expectedPageTitle));
+        Assert.assertEquals(actualPageTitle, expectedPageTitle, "The Page title was not matched");
 
         //asserting whether the login button is visible
         Assert.assertTrue(olgHomePage.getLoginButton().isVisible(), "The Login button was not visible");
@@ -48,10 +49,18 @@ public class AssignmentTest extends BaseTest {
     public void searchScenario() {
 
         //creating an object for google map to use the page object model
-        googleMapHomePage homePage = new googleMapHomePage(page);
+        GoogleMapHomePage homePage = new GoogleMapHomePage(page);
 
         //navigating to the google map page
         homePage.navigate();
+
+        //fetching the actual page title
+        String actualPageTitle = homePage.getPageTitle();
+        System.out.println(actualPageTitle);
+        String expectedPageTitle = "Google Maps";
+
+        //asserting whether the actual page title matched the expected one
+        Assert.assertEquals(actualPageTitle, expectedPageTitle, "The Page title was not matched");
 
         //searching the search box with the keyword
         homePage.getSearchField().fill("Restaurants");
