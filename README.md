@@ -1,126 +1,194 @@
 # OLG Automation Assignment
 
-## Overview
+## Introduction
 
-This project was developed as part of the OLG Automation Assignment. The automation framework is built using **Java**, **Playwright**, **TestNG**, and **Maven**, following the **Page Object Model (POM)** design pattern to ensure maintainability, scalability, and clean test architecture.
+This project was developed as part of the OLG Automation Assignment to demonstrate automation framework design, browser automation, test organization, maintainability, and CI/CD integration.
 
-The framework validates the following scenarios:
-
-### 1. Basic Assertions
-
-* Verify OLG page title
-* Verify Login button visibility
-* Verify Sign Up button visibility
-
-### 2. Restaurant Search Scenario
-
-* Navigate to Google Maps
-* Search for "Restaurants"
-* Verify search results are displayed successfully
+The framework is built using **Java 21**, **Playwright**, **TestNG**, and **Maven**, following the **Page Object Model (POM)** design pattern to ensure clean architecture, reusability, and scalability.
 
 ---
 
-## Tech Stack
+## Assignment Coverage
 
-| Tool           | Purpose                       |
+### Part 1 – Basic Assertions
+
+The framework validates:
+
+* OLG homepage title
+* Login button visibility
+* Sign Up button visibility
+
+### Part 2 – Restaurant Search Scenario
+
+The framework validates:
+
+* Navigation to Google Maps
+* Search for "Restaurants"
+* Verification that restaurant search results are returned successfully
+
+---
+
+## Technology Stack
+
+| Technology     | Purpose                       |
 | -------------- | ----------------------------- |
 | Java 21        | Programming Language          |
 | Playwright     | Browser Automation            |
-| TestNG         | Test Execution & Assertions   |
-| Maven          | Build & Dependency Management |
+| TestNG         | Test Framework                |
+| Maven          | Dependency & Build Management |
 | GitHub Actions | Continuous Integration        |
-| IntelliJ IDEA  | Development IDE               |
+| IntelliJ IDEA  | Development Environment       |
 
 ---
 
-## Why Playwright?
+## Why These Technologies?
+
+### Playwright
 
 Playwright was selected because it provides:
 
+* Fast and reliable browser automation
 * Auto-waiting capabilities
-* Fast and reliable execution
 * Modern browser support
 * Better handling of dynamic web applications
-* Improved test stability compared to traditional automation frameworks
+* Improved stability compared to traditional automation frameworks
+
+### TestNG
+
+TestNG provides:
+
+* Flexible test execution
+* Assertions
+* Test lifecycle management
+* Listener support for failure handling and screenshot capture
+
+### Maven
+
+Maven simplifies:
+
+* Dependency management
+* Build management
+* Test execution
+* Project portability across local and CI environments
 
 ---
 
 ## Framework Design
 
-The project follows the **Page Object Model (POM)** design pattern.
+The framework follows the **Page Object Model (POM)** design pattern.
+
+The Page Object Model was chosen to separate test logic from page interactions, making the framework easier to maintain, extend, and debug.
+
+This approach improves:
+
+* Maintainability
+* Readability
+* Reusability
+* Scalability
+
+---
+
+## Project Structure
 
 ```text
-src/test/java
-├── base
-│   └── BaseTest.java
-├── listeners
-│   └── TestListener.java
-├── pages
-│   ├── OLG
-│   │   └── OLGHomePage.java
-│   └── GoogleMap
-│       └── GoogleMapHomePage.java
-├── tests
-│   └── AssignmentTest.java
-└── utils
-    └── ScreenshotUtil.java
+OLG-assignment
+│
+├── .github
+│   └── workflows
+│       └── olg-assignment.yml
+│
+├── screenshots
+│
+├── src
+│   └── test
+│       └── java
+│           ├── base
+│           │   └── BaseTest.java
+│           │
+│           ├── listeners
+│           │   └── TestListener.java
+│           │
+│           ├── pages
+│           │   ├── OLG
+│           │   │   └── OLGHomePage.java
+│           │   │
+│           │   └── GoogleMap
+│           │       └── GoogleMapHomePage.java
+│           │
+│           ├── tests
+│           │   └── AssignmentTest.java
+│           │
+│           └── utils
+│               └── ScreenshotUtil.java
+│
+├── pom.xml
+├── testng.xml
+└── README.md
 ```
 
-### Framework Components
+---
 
-#### BaseTest
+## Framework Components
+
+### BaseTest
 
 Responsible for:
 
 * Playwright initialization
-* Browser launch and configuration
+* Browser launch
+* Browser context creation
 * Page creation
-* Test teardown and cleanup
+* Test setup and teardown
 * Local and CI execution support
 
-#### Page Objects
+### Page Objects
 
-Encapsulate:
+Page Objects encapsulate:
 
-* Page locators
-* User actions
-* Page-specific validations
+* Locators
+* Page actions
+* Page-specific functionality
 
-This improves maintainability and reduces code duplication.
+Benefits:
 
-#### TestListener
+* Cleaner test code
+* Reduced duplication
+* Easier maintenance
 
-Implements TestNG Listeners to:
+### TestListener
+
+Implements TestNG listeners to:
 
 * Capture screenshots automatically on test failures
 * Improve debugging and failure analysis
 
-#### ScreenshotUtil
+### ScreenshotUtil
 
-Utility class responsible for:
+Responsible for:
 
-* Creating screenshots
-* Storing screenshots in the screenshots directory
+* Screenshot creation
+* Screenshot storage
+* Failure evidence collection
 
 ---
 
 ## Test Cases
 
-### Test Case 1 – OLG Page Validation
+### Test Case 1 – OLG Homepage Validation
 
 **Objective**
 
-Validate basic UI elements on the OLG homepage.
+Validate important elements on the OLG homepage.
 
 **Validations**
 
-* Page title is displayed correctly
-* Login button is visible
-* Sign Up button is visible
+* Page title verification
+* Login button visibility
+* Sign Up button visibility
 
 ---
 
-### Test Case 2 – Google Maps Restaurant Search
+### Test Case 2 – Restaurant Search Validation
 
 **Objective**
 
@@ -131,23 +199,25 @@ Validate restaurant search functionality using Google Maps.
 1. Navigate to Google Maps
 2. Search for "Restaurants"
 3. Wait for results to load
-4. Verify search results are displayed
+4. Extract search results
+5. Verify at least one restaurant is returned
 
 **Validations**
 
-* Search execution succeeds
-* Restaurant results are displayed
+* Search executes successfully
+* Results are displayed
+* Restaurant list is not empty
 
 ---
 
 ## Prerequisites
 
-Before running the project, ensure the following are installed:
+Before running the framework, ensure the following are installed:
 
 * Java 21 or higher
 * Maven 3.8+
 * Git
-* IntelliJ IDEA (Recommended)
+* IntelliJ IDEA recommended for local execution
 
 ---
 
@@ -176,70 +246,41 @@ mvn exec:java -Dexec.mainClass=com.microsoft.playwright.CLI -Dexec.args="install
 
 ---
 
-## Running the Tests
+## Executing Tests
 
-### Execute All Tests Using Maven
+### Run All Tests
 
 ```bash
 mvn test
 ```
 
-### Execute Using TestNG Suite
+### Run Using TestNG Suite
 
 ```bash
 mvn test -Dsurefire.suiteXmlFiles=testng.xml
 ```
 
-### Execute from IntelliJ IDEA
-
-1. Open the project in IntelliJ IDEA
-2. Allow Maven dependencies to download
-3. Install Playwright browsers (one-time setup)
-4. Open `testng.xml`
-5. Right-click and select **Run 'testng.xml'**
-
-Alternatively, run the `AssignmentTest` class directly.
-
-### Execute in Headless Mode
+### Run in Headless Mode
 
 ```bash
 mvn test -Dheadless=true
 ```
 
----
+### Run from IntelliJ IDEA
 
-## Test Execution Flow
+1. Open the project in IntelliJ IDEA
+2. Allow Maven dependencies to download
+3. Install Playwright browsers using the command mentioned above
+4. Open `testng.xml`
+5. Right-click and select **Run 'testng.xml'**
 
-```text
-AssignmentTest
-        │
-        ▼
-     BaseTest
-        │
-        ▼
-   Launch Browser
-        │
-        ▼
-    Execute Tests
-        │
-        ▼
-     Assertions
-        │
-        ▼
-   Test Listener
-        │
-        ▼
- Screenshot on Failure
-        │
-        ▼
-   Browser Cleanup
-```
+Alternatively, the `AssignmentTest` class can be executed directly from IntelliJ IDEA.
 
 ---
 
 ## Screenshots
 
-Screenshots are captured automatically whenever a test fails.
+The framework automatically captures screenshots whenever a test fails.
 
 ### Screenshot Location
 
@@ -247,17 +288,19 @@ Screenshots are captured automatically whenever a test fails.
 screenshots/
 ```
 
-These screenshots help with:
+Screenshots captured during failures can be used for debugging both in local execution and CI environments.
 
-* Failure analysis
-* Debugging
-* Reporting
+### Benefits
+
+* Faster debugging
+* Improved failure analysis
+* Better troubleshooting
 
 ---
 
 ## Continuous Integration
 
-GitHub Actions is configured to execute the automation suite automatically.
+GitHub Actions has been configured to automatically execute the framework.
 
 ### Workflow File
 
@@ -267,42 +310,48 @@ GitHub Actions is configured to execute the automation suite automatically.
 
 ### CI Pipeline Includes
 
-* Maven Build
-* Dependency Resolution
-* Playwright Browser Installation
-* Test Execution
-* Build Validation
+* Source checkout
+* Java 21 setup
+* Maven build
+* Dependency resolution
+* Playwright browser installation
+* Test execution
+* Build validation
+* Screenshot artifact upload if failures occur
 
-The workflow runs automatically on:
+### Trigger Events
+
+The workflow executes automatically on:
 
 * Push events
-* Pull Requests
+* Pull requests
 
 ---
 
 ## Assumptions and Limitations
 
 * Internet connectivity is required.
-* Google Maps UI and locators may change over time.
-* OLG website behavior may vary across environments.
-* Public websites may introduce UI changes that require locator updates.
-* Test execution time may vary based on network performance.
+* Public website content may change over time.
+* Google Maps locators may require maintenance if the UI changes.
+* OLG website behavior may vary across regions and environments.
+* Test execution duration depends on network conditions.
 
 ---
 
 ## Future Enhancements
 
-If additional time were available, the framework could be extended with:
+Given additional time, the framework could be enhanced with:
 
-* Cross-browser execution (Chromium, Firefox, WebKit)
-* Allure Reporting
-* Data-driven testing
+* Cross-browser execution using Chromium, Firefox, and WebKit
 * Parallel execution
+* Data-driven testing
+* Allure reporting
 * Docker support
 * Enhanced logging
-* Environment-specific configurations
-* Retry mechanisms for transient failures
-* CI test reports and artifacts
+* Environment-specific configuration management
+* Retry mechanisms
+* Test reporting dashboards
+* CI artifact publishing for reports and screenshots
 
 ---
 
@@ -310,3 +359,4 @@ If additional time were available, the framework could be extended with:
 
 **Kathar Patcha Abdul Rahim**
 
+Automation Framework developed for the OLG Automation Assignment.
