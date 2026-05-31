@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+
+<suite name="OLG Assignment Suite">
+    <test name="Assignment Tests">
+        <classes>
+            <class name="tests.AssignmentTest"/>
+        </classes>
+    </test>
+</suite>
