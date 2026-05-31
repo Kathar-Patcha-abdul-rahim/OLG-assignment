@@ -14,6 +14,10 @@ public class BaseTest {
     protected BrowserContext context;
     protected Page page;
 
+    /**
+     * Initial setup is been done in this method
+     * creating playwright, browser, and page objects
+     */
     @BeforeMethod
     public void setup()
     {
@@ -30,6 +34,10 @@ public class BaseTest {
         page = context.newPage();
     }
 
+    /**
+     * Tear down is done in this method
+     * closing all the opened sessions
+     */
     @AfterMethod
     public void tearDown()
     {
