@@ -26,6 +26,7 @@ public class OLGHomePage {
     public void navigate()
     {
         page.navigate(OLG_URL);
+        page.waitForLoadState();
     }
 
     /**
