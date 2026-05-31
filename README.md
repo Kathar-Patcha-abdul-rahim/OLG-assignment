@@ -22,7 +22,7 @@ The framework validates:
 
 | Tool           | Purpose                         |
 | -------------- | ------------------------------- |
-| Java 17        | Programming language            |
+| Java 21        | Programming language            |
 | Playwright     | Browser automation              |
 | TestNG         | Test execution and assertions   |
 | Maven          | Build and dependency management |
