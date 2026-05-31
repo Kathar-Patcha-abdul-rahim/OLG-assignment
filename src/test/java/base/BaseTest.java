@@ -10,7 +10,7 @@ public class BaseTest {
 
     private Playwright playwright;
     private Browser browser;
-    private boolean headless = Boolean.parseBoolean(System.getProperty("headless", "false"));
+    private final boolean headless = Boolean.parseBoolean(System.getProperty("headless", "false"));
 
     protected BrowserContext context;
     protected Page page;
@@ -30,7 +30,7 @@ public class BaseTest {
                         .setArgs(List.of("--start-maximized")));
 
         context = browser.newContext(new Browser.NewContextOptions()
-                .setViewportSize(null));
+                .setViewportSize(1920, 1080));
 
         page = context.newPage();
     }
