@@ -36,7 +36,6 @@ public class AssignmentTest extends BaseTest {
         //asserting whether the actual page title matched the expected one
         Assert.assertEquals(actualPageTitle, expectedPageTitle, "The Page title was not matched");
 
-        olgHomePage.getLoginButton().waitFor(new Locator.WaitForOptions().setTimeout(15000));
         //asserting whether the login button is visible
         Assert.assertTrue(olgHomePage.getLoginButton().isVisible(), "The Login button was not visible");
 
@@ -57,7 +56,6 @@ public class AssignmentTest extends BaseTest {
 
         //fetching the actual page title
         String actualPageTitle = homePage.getPageTitle();
-        System.out.println(actualPageTitle);
         String expectedPageTitle = "Google Maps";
 
         //asserting whether the actual page title matched the expected one

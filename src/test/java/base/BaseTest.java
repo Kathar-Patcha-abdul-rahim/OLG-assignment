@@ -29,9 +29,15 @@ public class BaseTest {
                         .setHeadless(headless)
                         .setArgs(List.of("--start-maximized")));
 
-        context = browser.newContext(new Browser.NewContextOptions()
-                .setViewportSize(1920, 1080));
+        Browser.NewContextOptions contextOptions = new Browser.NewContextOptions();
 
+        if (headless) {
+            contextOptions.setViewportSize(1920, 1080);
+        } else {
+            contextOptions.setViewportSize(null);
+        }
+
+        context = browser.newContext(contextOptions);
         page = context.newPage();
     }
 
