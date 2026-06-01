@@ -44,7 +44,10 @@ public class AssignmentTest extends BaseTest {
 
     }
 
-
+    /**
+     * This test case covers part 2 of the assignment
+     * Where we need to search and verify atleast one item is returned
+     */
     @Test
     public void searchScenario() {
 
